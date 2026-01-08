@@ -73,7 +73,7 @@ class MissingTreesDetector:
             Dictionary with detected rows, cols, row_spacing, and col_spacing
         """
         if len(positions) < 2:
-            return {'rows': 1, 'cols': len(positions), 'row_spacing': 0, 'col_spacing': 0}
+            return {'rows': 1, 'cols': len(positions), 'row_spacing': 5.0, 'col_spacing': 5.0}
         
         # Extract x and y coordinates
         xs = sorted(set(round(x, 1) for x, y in positions))

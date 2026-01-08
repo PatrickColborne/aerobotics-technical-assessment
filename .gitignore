@@ -37,8 +37,5 @@ env/
 .coverage
 htmlcov/
 
-# Docker
-.dockerignore
-
 # OS
 .DS_Store
