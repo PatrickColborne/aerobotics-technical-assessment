@@ -1,5 +1,5 @@
 import httpx
-from missing_tree_api.app.aerobotics.models import Survey, Page, TreeSurveySummary, TreeSurvey
+from .models import Survey, Page, TreeSurveySummary, TreeSurvey
 from typing import List
 
 
@@ -31,9 +31,9 @@ class AeroboticsClient:
         return Page[Survey].model_validate(data)
 
     async def get_tree_survey_summary(self, survey_id: int) -> TreeSurveySummary:
-        data = await self._get(f"/farming/surveys/{survey_id}/tree-survey-summaries")
+        data = await self._get(f"/farming/surveys/{survey_id}/tree_survey_summaries")
         return TreeSurveySummary.model_validate(data)
 
-    async def get_tree_surveys(self, survey_id: int) -> List[TreeSurvey]:
-        data = await self._get(f"/farming/surveys/{survey_id}/tree-surveys")
-        return [TreeSurvey.model_validate(item) for item in data]
+    async def get_tree_surveys(self, survey_id: int) -> Page[TreeSurvey]:
+        data = await self._get(f"/farming/surveys/{survey_id}/tree_surveys")
+        return Page[TreeSurvey].model_validate(data)

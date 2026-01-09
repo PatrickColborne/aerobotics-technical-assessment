@@ -1,5 +1,5 @@
 from datetime import date
-from typing import Generic, List, TypeVar
+from typing import Generic, List, TypeVar, Optional
 
 from pydantic import BaseModel
 
@@ -14,29 +14,29 @@ class Survey(BaseModel):
 
 class TreeSurveySummary(BaseModel):
     survey_id: int
-    tree_count: int
-    missing_tree_count: int
-    average_area_m2: float
-    stddev_area_m2: float
-    average_ndre: float
-    stddev_ndre: float
+    tree_count: Optional[int] = None
+    missing_tree_count: Optional[int] = None
+    average_area_m2: Optional[float] = None
+    stddev_area_m2: Optional[float] = None
+    average_ndre: Optional[float] = None
+    stddev_ndre: Optional[float] = None
 
 class TreeSurvey(BaseModel):
     id: int
-    lat: float
-    lng: float
-    ndre: float
-    ndvi: float
-    volume: float
-    area: float
-    row_index: int
-    tree_index: int
+    lat: Optional[float] = None
+    lng: Optional[float] = None
+    ndre: Optional[float] = None
+    ndvi: Optional[float] = None
+    volume: Optional[float] = None
+    area: Optional[float] = None
+    row_index: Optional[int] = None
+    tree_index: Optional[int] = None
     survey_id: int
 
 class Page(BaseModel, Generic[T]):
     count: int
-    next: str
-    previous: str
+    next: Optional[str] = None
+    previous: Optional[str] = None
     results: List[T]
 
 # Aliases for typed pages
