@@ -21,4 +21,5 @@ async def get_missing_trees(id: int):
         Coordinate(lat=37.7749, lng=-122.4194),
         Coordinate(lat=34.0522, lng=-118.2437),
     ]
+
     return MissingTreesResponse(missing_trees=missing_trees)
