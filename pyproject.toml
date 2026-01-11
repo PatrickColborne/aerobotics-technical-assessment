@@ -21,7 +21,8 @@ build-backend = "hatchling.build"
 [dependency-groups]
 dev = [
     "pytest>=9.0.2",
-    "pytest-cov>=7.0.0"
+    "pytest-cov>=7.0.0",
+    "matplotlib>=3.10.8"
 ]
 
 [tool.hatch.build.targets.wheel]
