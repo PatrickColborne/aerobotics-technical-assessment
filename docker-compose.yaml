@@ -4,10 +4,12 @@ services:
   missing-tree-api:
     build: .
     container_name: missing-tree-api
+    environment:
+      AEROBOTICS_API_KEY: 4c80d904cae3d86b472fd636ef9d78a36faea104c61c7018a3604285d552d5e4
     ports:
       - "8000:8000"
     command: >
-      uvicorn main:app
+      uvicorn missing_tree_api.app.main:app
       --host 0.0.0.0
       --port 8000
       --reload
