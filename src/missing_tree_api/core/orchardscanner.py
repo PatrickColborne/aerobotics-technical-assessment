@@ -95,7 +95,7 @@ class OrchardScanner:
         Vectorized for performance.
         """
         # 1. Rotate orchard to align rows with X-axis
-        rotated, R_matrix = self._rotate_points(self.meters, angle)
+        rotated, r_matrix = self._rotate_points(self.meters, angle)
 
         # 2. Dynamic Thresholds
         tree = cKDTree(rotated)
@@ -163,11 +163,12 @@ class OrchardScanner:
 
         # Inverse rotation: v_global = v_rotated * R
         # (Since R was constructed as global->rotated)
-        inv_R = np.linalg.inv(R_matrix)
-        return np.dot(found_gaps_rotated, inv_R.T)
+        inv_r = np.linalg.inv(r_matrix)
+        return np.dot(found_gaps_rotated, inv_r.T)
 
     # --- 4. POST-PROCESSING ---
-    def deduplicate(self, points: np.ndarray, tolerance: float) -> np.ndarray:
+    @staticmethod
+    def deduplicate(points: np.ndarray, tolerance: float) -> np.ndarray:
         """
         Removes duplicates using Vectorized Nearest Neighbor search.
         Logic: If Point A and Point B are close, keep the one with the lower index.

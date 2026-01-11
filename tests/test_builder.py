@@ -12,8 +12,8 @@ lat_start, lon_start = -32.328, 18.826
 lat_step, lon_step = 0.0002, 0.0002  # step size in degrees
 origin = [lat_start, lon_start]
 
-axis1_angle = 30
-axis2_angle = 70
+axis1_angle = 0
+axis2_angle = 90
 
 full_grid = []
 for i in range(rows):
