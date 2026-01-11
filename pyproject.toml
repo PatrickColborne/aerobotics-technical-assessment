@@ -1,0 +1,29 @@
+[project]
+name = "aerobotics-technical-assessment"
+version = "1.0.0"
+description = "API for identifying missing trees in an orchard (Aerobotics Technical Assessment)."
+authors = [
+    { name = "Patrick Colborne", email = "pcolborne@gmail.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi>=0.128.0",
+    "pydantic>=2.5.1",
+    "scikit-learn>=1.3.2",
+    "numpy>=1.26.4",
+    "httpx>=0.28.1"
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.0.2",
+    "pytest-cov>=7.0.0",
+    "matplotlib>=3.10.8"
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/missing_tree_api"]
