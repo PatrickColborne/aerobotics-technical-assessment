@@ -21,6 +21,7 @@ RUN pip install .
 EXPOSE 8000
 
 # Use environment variables for API key and base URL
+ENV API_KEY=""
 ENV AEROBOTICS_API_KEY=""
 ENV AEROBOTICS_BASE_URL="https://api.aerobotics.com"
 

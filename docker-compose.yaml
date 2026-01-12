@@ -5,6 +5,7 @@ services:
     build: .
     container_name: missing-tree-api
     environment:
+      API_KEY: 9e49fc2a-9be5-4a87-ad11-c1e488dd6df6
       AEROBOTICS_API_KEY: 4c80d904cae3d86b472fd636ef9d78a36faea104c61c7018a3604285d552d5e4
     ports:
       - "8000:8000"

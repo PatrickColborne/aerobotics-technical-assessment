@@ -3,7 +3,8 @@ import os
 from typing import Optional, List
 
 import httpx
-from fastapi import FastAPI, HTTPException, status
+from fastapi import FastAPI, HTTPException, Security, status
+from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from missing_tree_api.client.aerobotics.client import AeroboticsClient
 from missing_tree_api.client.aerobotics.models import Page, Survey, TreeSurvey
 from missing_tree_api.core.orchardscanner import OrchardScanner
@@ -20,6 +21,25 @@ aerobotics_client = AeroboticsClient(
     api_key=os.getenv("AEROBOTICS_API_KEY")
 )
 
+security = HTTPBearer()
+
+async def verify_token(credentials: HTTPAuthorizationCredentials = Security(security)):
+    """
+    Validates the Bearer token from the Authorization header.
+    """
+    token = credentials.credentials
+
+    # Just 1 token for simplicity; in real apps, consider more robust auth
+    expected_token = os.getenv("API_KEY")
+
+    if token != expected_token:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Invalid authentication credentials",
+            headers={"WWW-Authenticate": "Bearer"},
+        )
+    return token
+
 app = FastAPI(title="Missing Tree Finder")
 
 @app.get(
@@ -31,7 +51,7 @@ app = FastAPI(title="Missing Tree Finder")
         500: {"description": "Internal Server Error"}
     }
 )
-async def get_missing_trees(orchard_id: int) -> MissingTreesResponse:
+async def get_missing_trees(orchard_id: int, token: str = Security(verify_token)) -> MissingTreesResponse:
     logger.info(f"Analyzing orchard {orchard_id}...")
 
     # 1. Get Surveys
