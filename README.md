@@ -6,8 +6,9 @@ This repository contains my implementation of the Aerobotics technical assessmen
 
 - Add more comprehensive unit and integration tests.
 - Performance improvements:
-  - Optimise the algorithm to handle larger datasets more efficiently.
-  - The current algorithm assumes orchard rows are straight, which is not always true. A more robust approach would be to fit a polynomial regression for each orchard row and use it to index trees and identify missing trees.
+    - Optimise the algorithm to handle larger datasets more efficiently.
+    - The current algorithm assumes orchard rows are straight, which is not always true. A more robust approach would be
+      to fit a polynomial regression for each orchard row and use it to index trees and identify missing trees.
 - I have primarily used Python as a scripting language in the past. I have lots to learn still.
 - Create a GitHub workflow to automate testing and application deployment.
 
